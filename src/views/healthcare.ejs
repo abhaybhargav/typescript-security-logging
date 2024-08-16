@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.healthcareInfo ? 'Edit' : 'Add' %> Healthcare Information</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/dashboard">Healthcare Dashboard</a>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4"><%= locals.healthcareInfo ? 'Edit' : 'Add' %> Healthcare Information</h1>
+        
+        <form action="<%= locals.healthcareInfo ? `/healthcare/${healthcareInfo.id}?_method=PUT` : '/healthcare' %>" method="POST">
+            <div class="form-group">
+                <label for="patientName">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" name="patientName" value="<%= locals.healthcareInfo ? healthcareInfo.patientName : '' %>" required>
+            </div>
+            <div class="form-group">
+                <label for="diagnosis">Diagnosis</label>
+                <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" required><%= locals.healthcareInfo ? healthcareInfo.diagnosis : '' %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="treatment">Treatment</label>
+                <textarea class="form-control" id="treatment" name="treatment" rows="3" required><%= locals.healthcareInfo ? healthcareInfo.treatment : '' %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><%= locals.healthcareInfo ? 'Update' : 'Add' %> Healthcare Info</button>
+            <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
